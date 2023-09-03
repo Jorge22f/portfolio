@@ -1,0 +1,330 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
+*/
+
+html {
+  scroll-behavior: smooth;
+}
+
+.main {
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 120px 24px 160px 24px;
+  pointer-events: none;
+}
+
+.main:before {
+  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
+  position: absolute;
+  content: "";
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.main:after {
+  content: "";
+  background-image: url("/public/assets/images/grid.svg");
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  opacity: 0.4;
+  filter: invert(1);
+}
+
+.gradient {
+  height: fit-content;
+  z-index: 3;
+  width: 100%;
+  max-width: 640px;
+  background-image: radial-gradient(
+          at 27% 37%,
+          hsla(215, 98%, 61%, 1) 0px,
+          transparent 0%
+  ),
+  radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),
+  radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1) 0px, transparent 50%),
+  radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
+  radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
+  radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
+  radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  filter: blur(100px) saturate(150%);
+  top: 80px;
+  opacity: 0.15;
+}
+
+.hide_fade {
+  cursor: default;
+  opacity: 0;
+  transition: all 250ms linear 0.1s;
+}
+
+.show_fade {
+  opacity: 1;
+  transition: all 250ms linear 0.1s;
+}
+
+@media screen and (max-width: 640px) {
+  .main {
+    padding: 0;
+  }
+}
+
+.image_sm_wobble, .image_md_wobble {
+  display: block;
+  padding: 32px;
+}
+
+.image_sm_wobble[wobble='1'] {
+  animation: sm_wobble 1s 1;
+}
+
+@keyframes sm_wobble {
+  25% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(-6deg);
+  }
+  75% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.image_md_wobble[wobble='1'] {
+  animation: md_wobble 1s 1;
+}
+
+@keyframes md_wobble {
+  25% {
+    transform: rotate(12deg);
+  }
+  50% {
+    transform: rotate(-24deg);
+  }
+  75% {
+    transform: rotate(4deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.shadow_on_hover {
+  will-change: box-shadow;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.shadow_on_hover:hover {
+  box-shadow: 10px 10px 10px rgb(100,100,100,1);
+}
+
+.drop_shadow_on_hover {
+  will-change: filter;
+  transition: filter 0.2s ease-in-out;
+}
+
+.drop_shadow_on_hover:hover {
+  filter: drop-shadow(10px 10px 10px rgb(100,100,100,1));
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: rgb(230, 220, 220);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transition: opacity 0.3s linear;
+}
+
+.loader > div {
+  position: absolute;
+  top: calc(50% - 4em);
+  left: calc(50% - 4em);
+  width: 6em;
+  height: 6em;
+  border: 1.1em solid rgba(0, 0, 0, 0.2);
+  border-left: 1.1em solid #000000;
+  border-radius: 50%;
+  animation: load8 1.1s infinite linear;
+  transition: opacity 0.3s;
+}
+
+@keyframes load8 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Tailwind Styles */
+
+.app {
+  @apply relative z-10 flex justify-center items-center flex-col mx-auto;
+}
+
+.green_btn {
+  @apply rounded-full border border-green-800 bg-green-800 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter items-center justify-center;
+}
+
+.red_btn {
+  @apply rounded-full border border-red-800 bg-red-800 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter items-center justify-center;
+}
+
+.black_btn {
+  @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
+}
+
+.outline_btn {
+  @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+}
+
+.head_text {
+  @apply sm:text-6xl text-4xl font-extrabold leading-[1.15] text-black;
+}
+
+.orange_gradient {
+  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+}
+
+.green_gradient {
+  @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
+}
+
+.blue_gradient {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+}
+
+.home-desc {
+    @apply sm:text-left text-center md:mt-4 mt-1 text-lg text-gray-600 sm:text-xl max-w-2xl;
+}
+
+.desc {
+  @apply mt-4 text-lg text-gray-600 sm:text-xl max-w-2xl;
+}
+
+.profile_row {
+  @apply mt-4 grid sm:grid-rows-1 grid-rows-2 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2;
+}
+
+.profile_data {
+  @apply sm:mt-4 mt-1 text-lg text-gray-600 sm:text-xl max-w-2xl text-left;
+}
+
+.search_input {
+  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+}
+
+.copy_btn {
+  @apply w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
+}
+
+.glassmorphism {
+  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
+}
+
+.home_layout {
+    @apply 2xl:py-72 xl:py-52 lg:py-32 md:py-20 sm:py-16 py-14 sm:columns-2 sm:gap-6 xl:columns-3;
+}
+
+.footer {
+    @apply w-full bg-gray-900 text-xs text-gray-100 text-center font-satoshi py-4
+}
+
+.to_top {
+    @apply fixed bottom-3 right-3 bg-gray-100 rounded-full
+}
+
+.prompt_layout {
+  @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
+}
+
+/* Connect Component */
+.connect {
+    @apply mt-16 mx-auto w-full flex justify-center items-center flex-col gap-2;
+}
+
+/* Introduction Component */
+.introduction {
+    @apply mx-auto w-full max-w-7xl flex justify-center items-center flex-col gap-2
+    2xl:pt-80 xl:pt-52 lg:pt-40 md:pt-32 sm:pt-24 pt-16 sm:px-10 px-5;
+}
+
+/* Feed Component */
+.feed {
+  @apply mt-16 mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
+}
+
+/* Form Component */
+.form_textarea {
+  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
+}
+
+.form_input {
+  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
+}
+
+/* Nav Component */
+.logo_text {
+  @apply max-sm:hidden font-satoshi font-semibold text-2xl text-black tracking-wide;
+}
+
+.dropdown {
+  @apply absolute right-0 top-full mt-3 sm:w-12 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+}
+
+.dropdown_link {
+  @apply text-sm font-inter text-gray-700 hover:text-gray-500 font-medium;
+}
+
+/* PromptCard Component */
+.prompt_card {
+  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
+}
+
+/* IntroductionCard Component */
+.introduction_card {
+    @apply sm:w-fit w-full;
+}
+
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.flex-start {
+  @apply flex justify-start items-start;
+}
+
+.flex-end {
+  @apply flex justify-end items-center;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
+}
