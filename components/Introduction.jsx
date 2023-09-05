@@ -1,32 +1,61 @@
 'use client';
 
+import Image from 'next/image';
 import {useState, useEffect} from 'react';
 
 import IntroductionCard from './IntroductionCard';
 
-const IntroductionList = ({data, handleTagClick}) => {
+const ShowButton = ({less, showCount, updateShown}) => {
   return (
-    <div className="mt-16 flex flex-wrap gap-5 justify-center">
-      {data.map((introduction) => (
-        <IntroductionCard
-          key={introduction._id}
-          image={introduction.image}
-          label={introduction.label}
-        />
-      ))}
-    </div>
+    <button
+      type="button"
+      className="outline_btn"
+      onClick={() => updateShown(less)}
+    >
+      <Image
+        src="/assets/images/arrow-up.png"
+        alt={`${less ? 'Less' : 'More'}1`}
+        width={22}
+        height={22}
+        className={`mr-4 ${less ? '' : 'rotate-180'}`}
+      />
+      <span>Show {less ? 'Less' : 'More'}</span>
+      <Image
+        src="/assets/images/arrow-up.png"
+        alt={`${less ? 'Less' : 'More'}2`}
+        width={22}
+        height={22}
+        className={`ml-4 ${less ? '' : 'rotate-180'}`}
+      />
+    </button>
   )
 }
 
 export function Introduction(props) {
-  const [posts, setPosts] = useState([]);
+  const [introductions, setIntroductions] = useState([]);
+  const [showCount, setShowCount] = useState(8);
+
+  const updateShown = (less) => {
+    if (!introductions.length) return;
+    const newCount = showCount + (less ? -4 : 4);
+    let newIntroductions = [];
+
+    for (let i = 0; i < introductions.length; i++) {
+      newIntroductions[i] = {...introductions[i], show: i < newCount};
+    }
+    setIntroductions(newIntroductions);
+    setShowCount(newCount);
+  }
 
   useEffect(() => {
     const fetchIntroductions = async () => {
       const response = await fetch('/api/introduction');
       const data = await response.json();
+      for (let i = 0; i < data.length; i++) {
+        data[i] = {...data[i], show: i < showCount};
+      }
 
-      setPosts(data);
+      setIntroductions(data);
     }
 
     fetchIntroductions();
@@ -50,10 +79,25 @@ export function Introduction(props) {
           I'm a quick learner and collaborate closely with teammates to create efficient, scalable, and user-friendly solutions that solve real-world problems.
         </p>
       </div>
-      <IntroductionList
-        data={posts}
-        handleTagLogic={() => {}}
-      />
+
+      <div className="mt-16 flex flex-wrap gap-5 justify-center">
+        {introductions.map((introduction) => (
+          introduction.show && <IntroductionCard
+            key={introduction._id}
+            image={introduction.image}
+            label={introduction.label}
+          />
+        ))}
+      </div>
+
+      <div className="flex flex-row justify-between gap-5 mt-8">
+        {showCount > 8 &&
+          <ShowButton less={true} showCount={showCount} updateShown={updateShown}/>
+        }
+        {showCount <= introductions.length &&
+          <ShowButton less={false} showCount={showCount} updateShown={updateShown}/>
+        }
+      </div>
     </section>
   );
 }
