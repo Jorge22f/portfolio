@@ -4,6 +4,7 @@ import Image from 'next/image';
 import {useState, useEffect} from 'react';
 
 import IntroductionCard from './IntroductionCard';
+import {useWindowSize} from '@utils/useWindowSize';
 
 const ShowButton = ({less, showCount, updateShown}) => {
   return (
@@ -34,17 +35,42 @@ const ShowButton = ({less, showCount, updateShown}) => {
 export function Introduction(props) {
   const [introductions, setIntroductions] = useState([]);
   const [showCount, setShowCount] = useState(8);
+  const size = useWindowSize();
 
   const updateShown = (less) => {
     if (!introductions.length) return;
-    const newCount = showCount + (less ? -4 : 4);
-    let newIntroductions = [];
+    let imagesPerRow;
+    switch (true) {
+      case (size.width > 1179):
+        imagesPerRow = 4;
+        break;
+      case (size.width > 899):
+        imagesPerRow = 3;
+        break;
+      case (size.width > 639):
+        imagesPerRow = 2;
+        break;
+      default:
+        imagesPerRow = 2;
+    }
+    const newCount = showCount + (less ? -imagesPerRow : imagesPerRow);
 
+    let newIntroductions = [];
     for (let i = 0; i < introductions.length; i++) {
       newIntroductions[i] = {...introductions[i], show: i < newCount};
     }
     setIntroductions(newIntroductions);
     setShowCount(newCount);
+
+    let yOffset;
+    switch (true) {
+      case (size.width > 639):
+        yOffset = 320;
+        break;
+      default:
+        yOffset = 540;
+    }
+    window.scrollBy(0, less ? -yOffset : yOffset);
   }
 
   useEffect(() => {
