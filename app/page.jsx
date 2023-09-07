@@ -35,7 +35,7 @@ const Home = () => {
         className="w-full home_layout flex items-center justify-around overflow-clip">
         <div className="w-full flex flex-center absolute">
           <Image
-            src="/assets/images/home-bg.jpg"
+            src={`${process.env.NEXT_PUBLIC_S3_URL}/images/home-bg.jpg`}
             alt="Home"
             width={3456}
             height={2304}
@@ -54,7 +54,7 @@ const Home = () => {
           </p>
         </div>
         {size.width > 700 && <Image
-          src="/assets/images/home.jpg"
+          src={`${process.env.NEXT_PUBLIC_S3_URL}/images/home.jpg`}
           alt="Home"
           width={554}
           height={455}
@@ -74,7 +74,7 @@ const Home = () => {
         onClick={scrollToTop}
       >
         <Image
-          src="/assets/images/arrow-up.png"
+          src={`${process.env.NEXT_PUBLIC_S3_URL}/images/arrow-up.png`}
           alt="To Top"
           width={64}
           height={64}

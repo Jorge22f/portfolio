@@ -44,7 +44,7 @@ export function Connect() {
               target="_blank"
             >
               <Image
-                src="/assets/images/In-Blue-128.png"
+                src={`${process.env.NEXT_PUBLIC_S3_URL}/images/In-Blue-128.png`}
                 alt="LinkedIn"
                 className="mt-5 drop_shadow_on_hover"
                 width={64}
@@ -56,7 +56,7 @@ export function Connect() {
               target="_blank"
             >
               <Image
-                src="/assets/images/github.png"
+                src={`${process.env.NEXT_PUBLIC_S3_URL}/images/github.png`}
                 alt="Github"
                 className="mt-5 drop_shadow_on_hover"
                 width={64}
@@ -67,7 +67,7 @@ export function Connect() {
         </div>
 
         {size.width > 600 && <Image
-          src="/assets/images/sms.png"
+          src={`${process.env.NEXT_PUBLIC_S3_URL}/images/sms.png`}
           alt="Connect"
           width={imageSize}
           height={imageSize}

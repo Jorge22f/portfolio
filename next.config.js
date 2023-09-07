@@ -5,7 +5,11 @@ const nextConfig = {
         serverComponentsExternalPackages: ['mongoose'],
     },
     images: {
-        domains: ['lh3.googleusercontent.com', 'portfolio-jorge22f.vercel.app'],
+        domains: [
+          'lh3.googleusercontent.com',
+          'portfolio-jorge22f.vercel.app',
+          'jorge-eslava-portfolio-files.s3.us-west-2.amazonaws.com'
+        ],
     },
     webpack(config) {
         config.experiments = {

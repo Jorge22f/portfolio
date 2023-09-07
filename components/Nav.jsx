@@ -43,7 +43,7 @@ function Nav(props) {
          style={navStyles}>
       <Link href="/#home" className="flex gap-2 flex-center">
         <Image
-          src="/assets/images/profile.jpg"
+          src={`${process.env.NEXT_PUBLIC_S3_URL}/images/profile.jpg`}
           alt="Logo"
           width={37}
           height={37}

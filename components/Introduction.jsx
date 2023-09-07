@@ -14,7 +14,7 @@ const ShowButton = ({less, showCount, updateShown}) => {
       onClick={() => updateShown(less)}
     >
       <Image
-        src="/assets/images/arrow-up.png"
+        src={`${process.env.NEXT_PUBLIC_S3_URL}/images/arrow-up.png`}
         alt={`${less ? 'Less' : 'More'}1`}
         width={22}
         height={22}
@@ -22,7 +22,7 @@ const ShowButton = ({less, showCount, updateShown}) => {
       />
       <span>Show {less ? 'Less' : 'More'}</span>
       <Image
-        src="/assets/images/arrow-up.png"
+        src={`${process.env.NEXT_PUBLIC_S3_URL}/images/arrow-up.png`}
         alt={`${less ? 'Less' : 'More'}2`}
         width={22}
         height={22}

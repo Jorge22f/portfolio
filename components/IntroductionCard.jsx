@@ -10,7 +10,7 @@ function IntroductionCard({image, label}) {
     <div className="introduction_card shadow_on_hover">
       <div className="flex justify-center items-center py-4 sm:w-[260px] w-full sm:h-[300px] h-[250px] rounded-xl backdrop-blur-sm bg-[#ffffff0a] shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
         <Image
-          src={`/assets/images/${image}`}
+          src={`${process.env.NEXT_PUBLIC_S3_URL}/images/${image}`}
           alt={label}
           width={200}
           height={200}
