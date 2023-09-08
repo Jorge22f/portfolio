@@ -4,13 +4,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 import {signIn, useSession, getProviders} from 'next-auth/react';
-import {useState, useEffect} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {NavDropdown} from '@components/NavDropdown';
 import {NavUserDropdown} from '@components/NavUserDropdown';
 
 function Nav(props) {
   const router = useRouter();
   const {data: session} = useSession();
+  const dropdownRef = useRef();
 
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
@@ -30,6 +31,16 @@ function Nav(props) {
 
     setUpProviders();
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (e.target.alt === 'Hamburger') return;
+      if (dropdownRef.current && !dropdownRef.current?.contains(e.target)) {
+        setNavDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+  }, [dropdownRef]);
 
   const scrollTo = (id) => {
     router.push(
@@ -105,10 +116,11 @@ function Nav(props) {
           alt="Hamburger"
           width={37}
           height={37}
-          onClick={() => setNavDropdown((prev) => !prev)}
+          onClick={() => {setNavDropdown(!navDropdown)}}
         />
 
         {navDropdown && (<NavDropdown
+          innerRef={dropdownRef}
           scrollTo={scrollTo}
         />)}
 
