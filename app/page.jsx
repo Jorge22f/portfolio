@@ -33,7 +33,12 @@ const Home = () => {
     <section id="home" className="w-full flex-center flex-col">
       <div
         className="w-full home_layout flex items-center justify-around overflow-clip"
-        style={{backgroundImage: `url(${process.env.NEXT_PUBLIC_S3_URL}/images/home-bg.jpg)`}}
+        style={{
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_S3_URL}/images/home-bg.jpg)`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center'
+        }}
       >
         <div
           className="sm:mx-5 mx-2.5 sm:py-5 py-2.5 lg:px-20 md:px-16 sm:px-10 px-5 z-10 bg-white bg-opacity-80 rounded-full"
