@@ -250,7 +250,7 @@ html {
 }
 
 .home_layout {
-    @apply 2xl:py-72 xl:py-52 lg:py-32 md:py-20 sm:py-16 py-14 sm:columns-2 sm:gap-6 xl:columns-3;
+    @apply 2xl:py-80 xl:py-60 lg:py-40 md:py-32 sm:py-28 py-24 sm:columns-2 sm:gap-6 xl:columns-3;
 }
 
 .footer {
@@ -267,13 +267,14 @@ html {
 
 /* Connect Component */
 .connect {
-    @apply mt-16 mx-auto w-full flex justify-center items-center flex-col gap-2;
+    @apply mt-16 mx-auto w-full flex justify-center items-center flex-col gap-2
+    lg:px-20 md:px-16 sm:px-10 px-5;
 }
 
 /* Introduction Component */
 .introduction {
     @apply mx-auto w-full max-w-7xl flex justify-center items-center flex-col gap-2
-    2xl:pt-80 xl:pt-52 lg:pt-40 md:pt-32 sm:pt-24 pt-16 sm:px-10 px-5;
+    2xl:pt-40 xl:pt-36 lg:pt-32 md:pt-28 sm:pt-24 pt-16 lg:px-20 md:px-16 sm:px-10 px-5;
 }
 
 /* Feed Component */

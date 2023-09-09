@@ -91,7 +91,7 @@ export function Introduction(props) {
     <section className="introduction relative">
       <div
         id="introduction"
-        className="absolute 2xl:top-64 xl:top-32 lg:top-24 md:top-16 sm:top-13 top-2"
+        className="absolute 2xl:top-14 xl:top-12 lg:top-10 md:top-7 sm:top-4 top-2"
       ></div>
       <div>
         <h1 className="head_text text-left">

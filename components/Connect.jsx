@@ -27,7 +27,7 @@ export function Connect() {
   }, [size.width]);
 
   return (
-    <section className="connect relative sm:px-10 px-5 bg-gray-100">
+    <section className="connect relative bg-gray-100">
       <div
         id="connect"
         className="absolute 2xl:top-64 xl:top-32 lg:top-24 md:top-16 sm:top-13 top-2"

@@ -30,20 +30,13 @@ const Home = () => {
   }, [showToTop]);
 
   return (
-    <section id="home" className="w-full flex-center flex-col sm:pt-32 pt-16">
+    <section id="home" className="w-full flex-center flex-col">
       <div
-        className="w-full home_layout flex items-center justify-around overflow-clip">
-        <div className="w-full flex flex-center absolute">
-          <Image
-            src={`${process.env.NEXT_PUBLIC_S3_URL}/images/home-bg.jpg`}
-            alt="Home"
-            width={3456}
-            height={2304}
-            className="opacity-[75%] absolute z-0 bg-center mb-32 overflow-clip w-[100%] max-w-[2000px]"
-          />
-        </div>
+        className="w-full home_layout flex items-center justify-around overflow-clip"
+        style={{backgroundImage: `url(${process.env.NEXT_PUBLIC_S3_URL}/images/home-bg.jpg)`}}
+      >
         <div
-          className="sm:mx-5 mx-2.5 sm:py-5 py-2.5 sm:px-10 px-5 z-10 bg-white bg-opacity-80 rounded-full"
+          className="sm:mx-5 mx-2.5 sm:py-5 py-2.5 lg:px-20 md:px-16 sm:px-10 px-5 z-10 bg-white bg-opacity-80 rounded-full"
         >
           <h1 className="head_text text-left">
             Hi! I'm
