@@ -2,18 +2,20 @@
 
 import {useRouter} from 'next/navigation';
 import {useSession} from 'next-auth/react';
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Profile} from '@components/Profile';
-import {Filecontext} from '@utils/filecontext';
+import {setAll} from '@store/reducers/user';
 
 const MyProfile = (props) => {
   const router = useRouter();
   const {data: session, status} = useSession();
 
   const [loading, setLoading] = useState(true);
-  const {user, setUser} = useContext(Filecontext);
   const [posts, setPosts] = useState([]);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -26,7 +28,7 @@ const MyProfile = (props) => {
 
     if (session?.user.id) {
       fetchPosts();
-      if (setUser) setUser(session.user);
+      if (!user.id) dispatch(setAll(session.user));
     }
     else {
       if (status === "unauthenticated") router.push('/');
