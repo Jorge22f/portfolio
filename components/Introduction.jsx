@@ -120,7 +120,7 @@ export function Introduction(props) {
         {showCount > 8 &&
           <ShowButton less={true} showCount={showCount} updateShown={updateShown}/>
         }
-        {showCount <= introductions.length &&
+        {showCount < introductions.length &&
           <ShowButton less={false} showCount={showCount} updateShown={updateShown}/>
         }
       </div>
